@@ -6,7 +6,7 @@ interface Props{
     title?: string;
 }
 
-export const Layout: FC<Props> = ({ children, title }) => {
+export const Layout: FC<Props> = ({ children, title }: FC) => {
     
   return (
         <>
