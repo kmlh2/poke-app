@@ -1,12 +1,11 @@
 
-import { useRouter } from 'next/router'
-// import React from 'react'
+// import { useRouter } from 'next/router'
 import { Layout } from '../../components/layouts';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { pokeApi } from '../../api';
 import { PokemonResponse } from '../../interfaces';
 import { Button, Card, Container, Grid, Text, Image } from '@nextui-org/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { localFavorites } from '../../utils';
 
 
@@ -15,15 +14,19 @@ interface Props {
 }
 
 const PokemonPage: NextPage<Props> = ({pokemon}) => {
-    const router = useRouter();
+    
+    const [isInFav, setIsInFav] = useState(localFavorites.existInFav(pokemon.id));
 
     const onToggleFav = () => {
         localFavorites.toggleFavorites(pokemon.id)
+        setIsInFav(!isInFav);
+        if ( isInFav ) return;
     }
-
-    useEffect(()=>{
-
-    },[]);
+     
+    //solo corre del lado del cliente
+    // useEffect(()=>{
+    //     const [isInFav, setIsInFav] = useState(localFavorites.existInFav(pokemon.id));
+    // },[]);
 
     return (
         <Layout title={pokemon.name}>
@@ -45,8 +48,10 @@ const PokemonPage: NextPage<Props> = ({pokemon}) => {
                     <Card>
                         <Card.Header css={{display: 'flex', justifyContent: 'space-between'}}>
                             <Text h1 transform='capitalize'>{pokemon.name}</Text>
-                            <Button color='gradient' ghost
-                            onClick={onToggleFav}>Guardar en Favoritos</Button>
+                            <Button color='gradient' ghost={!isInFav}
+                            onClick={onToggleFav}>
+                                {isInFav ? "En Favoritos" : "Guardar en Favoritos"}
+                                </Button>
                         </Card.Header>
                         <Card.Body>
                             <Text size={30}>Sprites:</Text>
