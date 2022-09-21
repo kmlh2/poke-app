@@ -17,8 +17,8 @@ export const Layout: FC<Props> = ({ children, title }: Props) => {
             <Head>
                 <title>{title || 'Pokemon App'}</title>
                 <meta name="author" content="Camilo Hernandez"/>
-                <meta name="description" content="Informacion del pokemon XXXX"/>
-                <meta name="keywords" content="XXXX, pokemon, pokedex"/>
+                <meta name="description" content={`Información sobre el pokémon ${ title }`} />
+                <meta name="keywords" content={ `${ title }, pokemon, pokedex`} />
 
                 <meta property="og:title" content={`Información sobre ${ title }`} />
                 <meta property="og:description" content={`Esta es la página sobre ${ title }`} />
