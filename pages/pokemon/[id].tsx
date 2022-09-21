@@ -1,5 +1,5 @@
 
-// import { useRouter } from 'next/router'
+
 import { Layout } from '../../components/layouts';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { pokeApi } from '../../api';
@@ -7,7 +7,7 @@ import { PokemonResponse } from '../../interfaces';
 import { Button, Card, Container, Grid, Text, Image } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 import { localFavorites } from '../../utils';
-
+import confetti from 'canvas-confetti';
 
 interface Props {
     pokemon: PokemonResponse;
@@ -21,6 +21,17 @@ const PokemonPage: NextPage<Props> = ({pokemon}) => {
         localFavorites.toggleFavorites(pokemon.id)
         setIsInFav(!isInFav);
         if ( isInFav ) return;
+
+        confetti({
+            zIndex: 999,
+            particleCount: 100,
+            spread: 150,
+            angle: -100,
+            origin: {
+                x: 1,
+                y: 0,
+            }
+        })
     }
      
     //solo corre del lado del cliente
