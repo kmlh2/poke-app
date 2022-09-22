@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async(ctx) => {
     id: i + 1,
     img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i+1}.svg` 
   }));
-
+ 
   return {
     props: {
       name: 'KML',

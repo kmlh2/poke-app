@@ -7,10 +7,11 @@ interface Props{
     title?: string;
     children: React.ReactNode;
 }
-
-const origin = (typeof window === 'undefined') ? '' : window.location.origin;
+ 
+const origin = (typeof window === 'undefined') ? 'https://kml-h2.vercel.app' : window.location.origin;
 
 export const Layout: FC<Props> = ({ children, title }: Props) => {
+ 
     
   return (
         <>
